@@ -2,8 +2,8 @@
 
 ChatGPT와 Claude를 **내 규칙으로** 쓰기 위한 시작 키트입니다. 규칙과 작업 기록을 내 GitHub에 한 번 적어 두면, 어느 AI를 열어도 같은 규칙으로 일하고 서로의 작업을 이어받습니다. AI는 확인한 결과만 "완료"라고 보고합니다.
 
-- **설명서:** [AI 거버넌스: ChatGPT·Claude를 내 규칙으로 쓰는 법](https://claude.ai/artifact/T7T8muM9GAWtkwieqvVNGe)
-- **시작 문장 만들기:** [생성 페이지](https://claude.ai/artifact/52HjuuFyUTqrqzLoPMip2b)
+- **설명서:** https://lifeinbeats9-prog.github.io/ai-governance-starter/
+- **시작 문장 만들기:** https://lifeinbeats9-prog.github.io/ai-governance-starter/generator.html
 
 ## 세 층 중 필요한 데까지만
 
@@ -32,6 +32,7 @@ governance/
   tasks/*.md          작업별 규칙: 코딩, 글쓰기, 조사, 외부 행동
 records/              결정·결과 기록과 양식
 bootstrap/            AI 설정에 붙일 시작 문장
+docs/                 설명서와 시작 문장 생성 페이지 (GitHub Pages)
 tools/                BOOT_INDEX 생성기
 advanced/mac-agent/   (고급) AI가 Mac에서 터미널을 쓰게 하는 설치 스크립트
 ```
