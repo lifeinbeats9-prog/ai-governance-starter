@@ -1,0 +1,38 @@
+# Keeps governance/BOOT_INDEX.json in sync with governance/CURRENT.json.
+# Edit CURRENT.json anywhere (even in the GitHub web editor); this job
+# regenerates the index and commits it back.
+name: Update boot index
+on:
+  push:
+    branches: [main]
+    paths:
+      - "governance/**"
+      - "records/README.md"
+      - "records/TEMPLATE.md"
+      - "tools/build_boot_index.py"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: boot-index
+  cancel-in-progress: false
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regenerate index
+        run: python tools/build_boot_index.py --write
+      - name: Commit if changed
+        run: |
+          if git diff --quiet governance/BOOT_INDEX.json; then
+            echo "index already fresh"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add governance/BOOT_INDEX.json
+          git commit -m "chore: regenerate BOOT_INDEX.json"
+          git push

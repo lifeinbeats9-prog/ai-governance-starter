@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.DS_Store
+# local Mac agent settings (contains your tunnel id)
+advanced/mac-agent/agent.conf

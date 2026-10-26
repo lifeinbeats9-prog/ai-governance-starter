@@ -1,0 +1,13 @@
+# Copy to agent.conf (same folder as setup.sh) and fill in.
+
+# REQUIRED: the OpenAI Secure MCP Tunnel id this Mac serves (tunnel_...)
+TUNNEL_ID=""
+
+# Folder the AI may read, write and run commands in. Must be on an external
+# volume (/Volumes/<name>/...) or under /Users/Shared/. Not inside a home folder.
+WORKSPACE="/Users/Shared/ai-workspace"
+
+# Optional overrides (defaults shown)
+# FOUNDER=""            # your macOS short name; default = the user who ran sudo
+# AGENT_USER="aiagent"; AGENT_UID=450
+# TUNNEL_USER="aitunnel"; TUNNEL_UID=451

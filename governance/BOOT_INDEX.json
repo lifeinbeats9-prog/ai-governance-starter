@@ -1,0 +1,80 @@
+{
+  "kind": "DERIVED_INDEX__NOT_THE_SOURCE",
+  "source": "governance/CURRENT.json",
+  "current_blob_sha": "6624c77f9d44c4c598e6e34cf0e5ff981b0e04e1",
+  "freshness_rule": "Valid only while current_blob_sha equals the git blob SHA of governance/CURRENT.json. If it differs or cannot be checked, read CURRENT.json directly.",
+  "status": "ACTIVE",
+  "version": "1.0",
+  "features": {
+    "persona_enabled": false,
+    "decision_records": true
+  },
+  "pointers": {
+    "core": "governance/rules/core.md",
+    "output": "governance/rules/output.md",
+    "records_dir": "records/"
+  },
+  "precedence": [
+    "AI 서비스 자체의 규칙",
+    "사용자의 최신 지시",
+    "이 저장소의 규칙"
+  ],
+  "task_routes": [
+    {
+      "id": "ORDINARY_ANSWER",
+      "when": "설명, 대화, 질문 답변 (외부 효과 없음)",
+      "load": [
+        "governance/rules/output.md"
+      ]
+    },
+    {
+      "id": "CODING",
+      "when": "코드 작성, 수정, 실행, 디버깅",
+      "load": [
+        "governance/rules/core.md",
+        "governance/tasks/coding.md"
+      ]
+    },
+    {
+      "id": "WRITING",
+      "when": "글, 문서, 메일 초안, 번역",
+      "load": [
+        "governance/rules/output.md",
+        "governance/tasks/writing.md"
+      ]
+    },
+    {
+      "id": "RESEARCH",
+      "when": "조사, 비교, 최신 정보 확인",
+      "load": [
+        "governance/rules/core.md",
+        "governance/tasks/research.md"
+      ]
+    },
+    {
+      "id": "EXTERNAL_ACTION",
+      "when": "보내기, 게시, 삭제, 결제, 예약, 권한 변경 등 되돌리기 어려운 행동",
+      "load": [
+        "governance/rules/core.md",
+        "governance/tasks/external-actions.md"
+      ]
+    },
+    {
+      "id": "DECISION_RECORD",
+      "when": "중요한 결정이나 결과를 기록으로 남길 때",
+      "load": [
+        "records/README.md",
+        "records/TEMPLATE.md"
+      ]
+    },
+    {
+      "id": "GOVERNANCE_CHANGE",
+      "when": "이 규칙 자체를 바꾸자고 할 때",
+      "load": [
+        "governance/CURRENT.json",
+        "governance/rules/core.md"
+      ]
+    }
+  ],
+  "generator": "tools/build_boot_index.py"
+}

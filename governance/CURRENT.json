@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "ACTIVE",
+  "version": "1.0",
+  "note": "이 파일이 정본입니다. 고치면 GitHub Action이 BOOT_INDEX.json을 자동으로 다시 만듭니다 (로컬에서는 python tools/build_boot_index.py --write).",
+  "rules": {
+    "core": "governance/rules/core.md",
+    "output": "governance/rules/output.md",
+    "persona": "governance/rules/persona.md"
+  },
+  "features": {
+    "persona_enabled": false,
+    "decision_records": true
+  },
+  "records_dir": "records/",
+  "precedence": [
+    "AI 서비스 자체의 규칙",
+    "사용자의 최신 지시",
+    "이 저장소의 규칙"
+  ],
+  "task_routes": [
+    {
+      "id": "ORDINARY_ANSWER",
+      "when": "설명, 대화, 질문 답변 (외부 효과 없음)",
+      "load": ["governance/rules/output.md"]
+    },
+    {
+      "id": "CODING",
+      "when": "코드 작성, 수정, 실행, 디버깅",
+      "load": ["governance/rules/core.md", "governance/tasks/coding.md"]
+    },
+    {
+      "id": "WRITING",
+      "when": "글, 문서, 메일 초안, 번역",
+      "load": ["governance/rules/output.md", "governance/tasks/writing.md"]
+    },
+    {
+      "id": "RESEARCH",
+      "when": "조사, 비교, 최신 정보 확인",
+      "load": ["governance/rules/core.md", "governance/tasks/research.md"]
+    },
+    {
+      "id": "EXTERNAL_ACTION",
+      "when": "보내기, 게시, 삭제, 결제, 예약, 권한 변경 등 되돌리기 어려운 행동",
+      "load": ["governance/rules/core.md", "governance/tasks/external-actions.md"]
+    },
+    {
+      "id": "DECISION_RECORD",
+      "when": "중요한 결정이나 결과를 기록으로 남길 때",
+      "load": ["records/README.md", "records/TEMPLATE.md"]
+    },
+    {
+      "id": "PERSONA",
+      "when": "사용자가 캐릭터나 말투를 명시적으로 부를 때 (persona_enabled가 true일 때만)",
+      "load": ["governance/rules/persona.md"]
+    },
+    {
+      "id": "GOVERNANCE_CHANGE",
+      "when": "이 규칙 자체를 바꾸자고 할 때",
+      "load": ["governance/CURRENT.json", "governance/rules/core.md"]
+    }
+  ]
+}
